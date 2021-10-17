@@ -27,6 +27,34 @@ RDB slower than NoRDB
 WHERE filters before aggregation, HAVIng filters after AGGREGATION
 
   SELECT TotalSalary 
+
+///
+
+SELECT Count(*) AS [Count]
+FROM WizzardDeposits
+
+SELECT MAX(MagicWandSize) AS LongestMagicWand
+FROM WizzardDeposits
+
+SELECT TOP(1) MagicWandSize AS LongestMagicWand
+FROM WizzardDeposits
+ORDER BY MagicWandSize DESC
+
+SELECT 
+    DepositGroup,
+    MAX(MagicWandSize) AS LongestMagicWand
+FROM 
+    WizzardDeposits
+GROUP BY 
+     DepositGroup
+
+
+	 SELECT 
+	       TOP(2) DepositGroup
+		   --,AVG(MagicWandSize) 
+	 FROM WizzardDeposits
+	 GROUP BY DepositGroup
+	 ORDER BY AVG(MagicWandSize)
   FROM 
 	  (SELECT 
 	      DepartmentID
@@ -52,4 +80,10 @@ WE can change HAVING with two selects nested selects
 	  GROUP BY 
 		  DepartmentID 
 	  HAVING SUM(Salary) > 300000
+
+PIVOT TABLE aggregates data from another table, applies aggr. operaton 
+PIVOT = rotating
+rows to make it like columns, 
+unpivot make the opposite of pivot take the colums to rows 
+
 
